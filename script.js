@@ -6,8 +6,6 @@ document.getElementsByTagName('body')[0].appendChild(el);
 })();
 
 javascript:(function(){var el = document.createElement("script");el.setAttribute("src","https://zution.github.io/states/script.js");document.getElementsByTagName('body')[0].appendChild(el);})();
-
-var a=document.createElement("script");a.type="text/javascript";a.setAttribute("id","thescriptthingy");a.src="https://zution.github.io/states/script.js";a.onerror=function(){alert("There is likely a security setting preventing this from running, made by the creator of this site.\n\nBlocking pop-ups on a site will prevent the link from opening. If you want, you can allow pop-ups, but make sure to only do it on sites you trust.");window.open("https://states.typhonz.repl.co/")};if(document.getElementById("thescriptthingy")===null){document.getElementsByTagName("body")[0].appendChild(a)}function test(){var t;num=Math.floor(51*Math.random()+0),randNum=Math.floor(2*Math.random()+1),1===randNum&&(prompt("What is the capital of "+states[num])!==capitals[num]&&alert("The capital of "+states[num]+" is "+capitals[num]),prompt("What is the abbreviation of "+states[num])!==abbreviations[num]&&alert("The abbreviation of "+states[num]+" is "+abbreviations[num])),2===randNum&&(null==document.getElementById("statesBtn")&&((t=document.createElement("div")).innerHTML="<img src='https://www.geoguessr.com/seterra/mapimage/4003.png'></img>",t.setAttribute("id","statesImg"),document.getElementsByTagName("body")[0].appendChild(t),(t=document.getElementById("statesImg")).style.position="absolute",t.style.left="10px",t.style.top="10px",t.style.zIndex="2147483646",(t=document.createElement("button")).innerHTML="X",t.setAttribute("id","statesBtn"),t.setAttribute("onclick","closeImg();"),document.getElementsByTagName("body")[0].appendChild(t),(t=document.getElementById("statesBtn")).style.position="absolute",t.style.left="10px",t.style.top="10px",t.style.zIndex="2147483647",t.style.border="none",t.style.fontFamily="Monospace",t.style.cursor="pointer"),setTimeout(()=>{var t=num+1;prompt("Which state represents number "+t+" on the map?")===states[num]?alert("Correct."):alert("The state was "+states[num])},500))}})();
 */
 
 // init
@@ -30,8 +28,9 @@ document.addEventListener("keypress", function(event) {
     }
 });
 
+// test (or quiz) the user
 function test() {
-num = Math.floor(Math.random() * (51 - 0) + 0);
+num = Math.floor(Math.random() * (50 - 0) + 0);
 randNum = Math.floor(Math.random() * (3 - 1) + 1);
 
 if (randNum === 1) {
@@ -47,10 +46,7 @@ if (randNum === 1) {
 }
 
 if (randNum === 2) {
-    
     if (document.getElementById("statesBtn") == null) {
-        //var el = document.createElement("div");
-        //el.innerHTML = "<img src='https://www.geoguessr.com/seterra/mapimage/4003.png'></img>";
         var el = document.createElement("img");
         el.setAttribute("src","https://www.geoguessr.com/seterra/mapimage/4003.png");
         el.setAttribute("id","statesImg");
@@ -61,8 +57,8 @@ if (randNum === 2) {
         el.style.left = "5px";
         el.style.top = "5px";
         el.style.zIndex = "2147483646";
-        el.style.width = "50%";
-        el.style.height = "50%";
+        el.style.width = "450px";
+        el.style.height = "auto";
 
         el = document.createElement("button");
         el.innerHTML = "X";

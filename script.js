@@ -57,7 +57,7 @@ if (randNum === 2) {
         el.style.left = "5px";
         el.style.top = "5px";
         el.style.zIndex = "2147483646";
-        el.style.width = "450px";
+        el.style.width = "33%";
         el.style.height = "auto";
 
         el = document.createElement("button");

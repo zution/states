@@ -49,16 +49,20 @@ if (randNum === 1) {
 if (randNum === 2) {
     
     if (document.getElementById("statesBtn") == null) {
-        var el = document.createElement("div");
-        el.innerHTML = "<img src='https://www.geoguessr.com/seterra/mapimage/4003.png'></img>";
+        //var el = document.createElement("div");
+        //el.innerHTML = "<img src='https://www.geoguessr.com/seterra/mapimage/4003.png'></img>";
+        var el = document.createElement("img");
+        el.setAttribute("src","https://www.geoguessr.com/seterra/mapimage/4003.png");
         el.setAttribute("id","statesImg");
         document.getElementsByTagName('body')[0].appendChild(el);
 
         el = document.getElementById("statesImg");
         el.style.position = "absolute";
-        el.style.left = "10px";
-        el.style.top = "10px";
+        el.style.left = "5px";
+        el.style.top = "5px";
         el.style.zIndex = "2147483646";
+        el.style.width = "50%";
+        el.style.height = "50%";
 
         el = document.createElement("button");
         el.innerHTML = "X";
@@ -80,7 +84,7 @@ if (randNum === 2) {
         let num2 = num + 1;
         let ans = prompt("Which state represents number " + num2 + " on the map?");
         if (ans === states[num]) {
-            alert("Correct.");
+            // idk
         } else {
             alert("The state was " + states[num]);
         }

@@ -15,6 +15,15 @@ const capitals = ["Olympia", "Salem", "Sacremento", "Phoenix", "Carson City", "S
 var num;
 var randNum;
 
+var testType = prompt("Which test type, questions (random questions for random states), or test (asks questions for all states)?");
+testType = testType.toLowerCase();
+if (testType !== "questions" && testType !== "test") {
+    do {
+        testType = prompt("Invalid answer. Which test type, questions (random questions for random states), or test (asks questions for all states)?");
+        testType = testType.toLowerCase();
+    } while (testType !== "questions" && testType !== "test");
+}
+
 function closeImg() {
     let elem = document.getElementById("statesImg");
     elem.remove();
@@ -22,68 +31,130 @@ function closeImg() {
     elem.remove();
 }
 
-document.addEventListener("keypress", function(event) {
-    if (event.keyCode == 13) {
-        test();
-    }
-});
+// Option 1: Questions (random questions)
+if (testType === "questions") {
+    document.addEventListener("keypress", function(event) {
+        if (event.keyCode == 13) {
+            test();
+        }
+    });
 
-// test (or quiz) the user
-function test() {
-num = Math.floor(Math.random() * (50 - 0) + 0);
-randNum = Math.floor(Math.random() * (3 - 1) + 1);
+    function test() {
+        num = Math.floor(Math.random() * (50 - 0) + 0);
+        randNum = Math.floor(Math.random() * (3 - 1) + 1);
 
-if (randNum === 1) {
-    let ans = prompt("What is the capital of " + states[num]);
-    if (ans !== capitals[num]) {
-    	alert("The capital of " + states[num] + " is " + capitals[num]);
-    }
-    
-    ans = prompt("What is the abbreviation of " + states[num]);
-    if (ans !== abbreviations[num]) {
-    	alert("The abbreviation of " + states[num] + " is " + abbreviations[num]);
+        if (randNum === 1) {
+            let ans = prompt("What is the capital of " + states[num] + "?");
+            if (ans !== capitals[num]) {
+                alert("The capital of " + states[num] + " is " + capitals[num] + ".");
+            }
+
+            ans = prompt("What is the abbreviation of " + states[num]);
+            if (ans !== abbreviations[num]) {
+                alert("The abbreviation of " + states[num] + " is " + abbreviations[num] + ".");
+            }
+        }
+
+        if (randNum === 2) {
+            if (document.getElementById("statesBtn") == null) {
+                var el = document.createElement("img");
+                el.setAttribute("src","https://www.geoguessr.com/seterra/mapimage/4003.png");
+                el.setAttribute("id","statesImg");
+                document.getElementsByTagName('body')[0].appendChild(el);
+
+                el = document.getElementById("statesImg");
+                el.style.position = "absolute";
+                el.style.left = "5px";
+                el.style.top = "5px";
+                el.style.zIndex = "2147483646";
+                el.style.width = "33%";
+                el.style.height = "auto";
+
+                el = document.createElement("button");
+                el.innerHTML = "X";
+                el.setAttribute("id","statesBtn");
+                el.setAttribute("onclick","closeImg();");
+                document.getElementsByTagName('body')[0].appendChild(el);
+
+                el = document.getElementById("statesBtn");
+                el.style.position = "absolute";
+                el.style.left = "10px";
+                el.style.top = "10px";
+                el.style.zIndex = "2147483647";
+                el.style.border = "none";
+                el.style.fontFamily = "Monospace";
+                el.style.cursor = "pointer";
+            }
+
+            setTimeout(() => {
+                let num2 = num + 1;
+                let ans = prompt("Which state represents number " + num2 + " on the map?");
+                if (ans === states[num]) {
+                    // idk
+                } else {
+                    alert("The state was " + states[num] + ".");
+                }
+            }, 500);
+        }
     }
 }
 
-if (randNum === 2) {
-    if (document.getElementById("statesBtn") == null) {
-        var el = document.createElement("img");
-        el.setAttribute("src","https://www.geoguessr.com/seterra/mapimage/4003.png");
-        el.setAttribute("id","statesImg");
-        document.getElementsByTagName('body')[0].appendChild(el);
+// Option 2: Test (All states, random order)
+if (testType === "test") {
+    var el = document.createElement("img");
+    el.setAttribute("src","https://www.geoguessr.com/seterra/mapimage/4003.png");
+    el.setAttribute("id","statesImg");
+    document.getElementsByTagName('body')[0].appendChild(el);
 
-        el = document.getElementById("statesImg");
-        el.style.position = "absolute";
-        el.style.left = "5px";
-        el.style.top = "5px";
-        el.style.zIndex = "2147483646";
-        el.style.width = "33%";
-        el.style.height = "auto";
+    el = document.getElementById("statesImg");
+    el.style.position = "absolute";
+    el.style.left = "5px";
+    el.style.top = "5px";
+    el.style.zIndex = "2147483646";
+    el.style.width = "33%";
+    el.style.height = "auto";
 
-        el = document.createElement("button");
-        el.innerHTML = "X";
-        el.setAttribute("id","statesBtn");
-        el.setAttribute("onclick","closeImg();");
-        document.getElementsByTagName('body')[0].appendChild(el);
-        
-        el = document.getElementById("statesBtn");
-        el.style.position = "absolute";
-        el.style.left = "10px";
-        el.style.top = "10px";
-        el.style.zIndex = "2147483647";
-        el.style.border = "none";
-        el.style.fontFamily = "Monospace";
-        el.style.cursor = "pointer";
-    }
+    el = document.createElement("button");
+    el.innerHTML = "X";
+    el.setAttribute("id","statesBtn");
+    el.setAttribute("onclick","closeImg();");
+    document.getElementsByTagName('body')[0].appendChild(el);
+
+    el = document.getElementById("statesBtn");
+    el.style.position = "absolute";
+    el.style.left = "10px";
+    el.style.top = "10px";
+    el.style.zIndex = "2147483647";
+    el.style.border = "none";
+    el.style.fontFamily = "Monospace";
+    el.style.cursor = "pointer";
+    
+    const pastNum = [];
     
     setTimeout(() => {
-        let num2 = num + 1;
-        let ans = prompt("Which state represents number " + num2 + " on the map?");
-        if (ans === states[num]) {
-            // idk
-        } else {
-            alert("The state was " + states[num]);
+        for (let i = 0; i < 50; i++) {
+            let num;
+            do {
+                num = Math.floor(Math.random() * (50 - 0) + 0);
+            } while (typeof num === 'undefined' || pastNum.indexOf(num) !== -1);
+            pastNum.push(num);
+
+            let num2 = num + 1;
+
+            let ans = prompt("What is state number " + num2 + "?");
+            if (ans !== states[num]) {
+                alert("The state was " + states[num]);
+            }
+            
+            ans = prompt("What is the capital of " + states[num] + "?");
+            if (ans !== capitals[num]) {
+                alert("The capital of " + states[num] + " is " + capitals[num] + ".");
+            }
+            
+            ans = prompt("What is the abbreviation of " + states[num] + "?");
+            if (ans !== abbreviations[num]) {
+                alert("The abbreviation of " + states[num] + " is " + abbreviations[num] + ".");
+            }
         }
     }, 500);
-}
 }
